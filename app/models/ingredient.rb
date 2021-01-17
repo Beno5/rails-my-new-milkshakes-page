@@ -1,6 +1,4 @@
 class Ingredient < ApplicationRecord
-  belongs_to :user
-  belongs_to :milkshakes
+  has_many :doses
   validates :name, presence: true, uniqueness: true
-  validates :dose, presence: true
 end
