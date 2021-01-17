@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_072054) do
+ActiveRecord::Schema.define(version: 2021_01_17_084049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favourites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "milkshakes_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["milkshakes_id"], name: "index_favourites_on_milkshakes_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.string "dose"
+    t.bigint "user_id"
+    t.bigint "milkshakes_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["milkshakes_id"], name: "index_ingredients_on_milkshakes_id"
+    t.index ["user_id"], name: "index_ingredients_on_user_id"
+  end
+
+  create_table "milkshakes", force: :cascade do |t|
+    t.string "description"
+    t.string "preparation"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["user_id"], name: "index_milkshakes_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +57,9 @@ ActiveRecord::Schema.define(version: 2021_01_17_072054) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favourites", "milkshakes", column: "milkshakes_id"
+  add_foreign_key "favourites", "users"
+  add_foreign_key "ingredients", "milkshakes", column: "milkshakes_id"
+  add_foreign_key "ingredients", "users"
+  add_foreign_key "milkshakes", "users"
 end
