@@ -1,6 +1,11 @@
 <h1>Milkshakes#show</h1>
 <p>Find me in app/views/milkshakes/show.html.erb</p>
 <%= @milkshake.name %>
-<% @doses.each do |dose| %> <br>
-<%= dose.ingredient.name %> --- <%= dose.name %> 
+
+<% @milkshake.doses.each do |dose| %> <br>
+  <%= dose.ingredient.name %> --- <%= dose.name %> 
 <% end %>
+
+<%= link_to "Edit", edit_milkshake_path(@milkshake) %>
+<%= link_to 'Delete', milkshake_path(@milkshake), method: :delete,
+  data: { confirm: "Are you sure?" } %>

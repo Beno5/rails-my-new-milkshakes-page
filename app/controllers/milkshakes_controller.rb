@@ -5,7 +5,7 @@ class MilkshakesController < ApplicationController
   end
 
   def show
-    @doses = Dose.where(milkshake: @milkshake)
+    @dose = Dose.new
   end
 
   def new
@@ -14,6 +14,7 @@ class MilkshakesController < ApplicationController
 
   def create
     @milkshake = Milkshake.new(milkshake_params)
+    @milkshake.user = current_user
     if @milkshake.save
       redirect_to milkshake_path(@milkshake)
     else
