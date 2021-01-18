@@ -4,8 +4,12 @@
 
 <% @milkshake.doses.each do |dose| %> <br>
   <%= dose.ingredient.name %> --- <%= dose.name %> 
+    <%= link_to "X",
+      dose_path(dose),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
 <% end %>
-
+<%= link_to "Add Ingredient", new_milkshake_dose_path(@milkshake) %>
 <%= link_to "Edit", edit_milkshake_path(@milkshake) %>
 <%= link_to 'Delete', milkshake_path(@milkshake), method: :delete,
   data: { confirm: "Are you sure?" } %>
