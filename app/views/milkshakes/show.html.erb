@@ -1,15 +1,26 @@
-<h1>Milkshakes#show</h1>
-<p>Find me in app/views/milkshakes/show.html.erb</p>
-<%= @milkshake.name %>
-
-<% @milkshake.doses.each do |dose| %> <br>
-  <%= dose.ingredient.name %> --- <%= dose.name %> 
-    <%= link_to "X",
-      dose_path(dose),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
-<% end %>
-<%= link_to "Add Ingredient", new_milkshake_dose_path(@milkshake) %>
-<%= link_to "Edit", edit_milkshake_path(@milkshake) %>
-<%= link_to 'Delete', milkshake_path(@milkshake), method: :delete,
-  data: { confirm: "Are you sure?" } %>
+<div class="container">
+  <div class="card-product">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+    <div class="card-product-infos">
+      <h2><%= @milkshake.name %></h2>
+      <p><%= @milkshake.description %></p>
+      <ul>
+        <% @milkshake.doses.each do |dose| %>
+          <li>
+            <%= dose.ingredient.name %> --- <%= dose.name %> 
+            <%= link_to "X",
+              dose_path(dose),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+          </li>
+        <% end %>
+      <ul>
+      <%= link_to "Add Ingredient", new_milkshake_dose_path(@milkshake), class: "btn btn-primary" %>
+    </div>
+    <div>
+      <%= link_to "Edit", edit_milkshake_path(@milkshake), class: "btn btn-success" %>
+      <%= link_to 'Delete', milkshake_path(@milkshake),class: "btn btn-danger", method: :delete,
+        data: { confirm: "Are you sure?" } %>
+    </div>
+  </div> 
+</div>

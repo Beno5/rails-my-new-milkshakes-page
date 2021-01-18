@@ -1,9 +1,13 @@
-<h1>Milkshakes#index</h1>
-<p>Find me in app/views/milkshakes/index.html.erb</p>
-<div class="cards">
-  <% @milkshakes.each do |milkshake| %>
-    <div class="card">
+<div class="container">
+  <h1>Welcome</h1>
+  <div class="cards">
+    <% @milkshakes.each do |milkshake| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
       <%= link_to milkshake.name, milkshake_path(milkshake) %>
     </div>
     <% end %>
+  </div>
 </div>
+
+
+  
