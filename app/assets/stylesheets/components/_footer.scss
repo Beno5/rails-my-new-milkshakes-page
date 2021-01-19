@@ -1,0 +1,26 @@
+.footer {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+  padding: 0px 50px;
+  color: rgba(0,0,0,0.3);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.footer a {
+  color: black;
+  opacity: 0.3;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0px 10px;
+  
+}
+
+.footer a:hover {
+  opacity: 1;
+}

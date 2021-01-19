@@ -2,11 +2,14 @@ class DosesController < ApplicationController
   before_action :find_milkshake, only: [:new, :create]
   def new
     @dose = Dose.new
+    @dose.milkshake = @milkshake
+    authorize @dose
   end
 
   def create
     @dose = Dose.new(dose_params)
     @dose.milkshake = @milkshake
+    authorize @dose
     if @dose.save
       redirect_to milkshake_path(@milkshake)
     else
@@ -16,6 +19,7 @@ class DosesController < ApplicationController
 
   def destroy
     @dose = Dose.find(params[:id])
+    authorize @dose
     @milkshake = @dose.milkshake
     @dose.destroy
     redirect_to milkshake_path(@milkshake)

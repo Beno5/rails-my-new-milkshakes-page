@@ -18,7 +18,9 @@
           <%= link_to "Milkshakes", milkshakes_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "New Milkshake", new_milkshake_path, class: "nav-link" %>
+          <% if policy(Milkshake).create? %>
+            <%= link_to "New Milkshake", new_milkshake_path, class: "nav-link" %>
+          <% end %>
         </li>
         <li class="nav-item">
           <%= link_to "Favourites", milkshakes_path, class: "nav-link" %>

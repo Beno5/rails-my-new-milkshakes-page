@@ -7,20 +7,26 @@
       <ul>
         <% @milkshake.doses.each do |dose| %>
           <li>
-            <%= dose.ingredient.name %> --- <%= dose.name %> 
-            <%= link_to "X",
-              dose_path(dose),
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
+            <%= dose.ingredient.name %> --- <%= dose.name %>
+              <% if policy(@milkshake).update? %>
+                <%= link_to "X",
+                  dose_path(dose),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+              <% end %>
           </li>
         <% end %>
       <ul>
-      <%= link_to "Add Ingredient", new_milkshake_dose_path(@milkshake), class: "btn btn-primary" %>
+      <% if policy(@milkshake).update? %>
+        <%= link_to "Add Dose", new_milkshake_dose_path(@milkshake), class: "btn btn-primary" %>
+      <% end %>
     </div>
     <div>
-      <%= link_to "Edit", edit_milkshake_path(@milkshake), class: "btn btn-success" %>
-      <%= link_to 'Delete', milkshake_path(@milkshake),class: "btn btn-danger", method: :delete,
+      <% if policy(@milkshake).update? %>
+        <%= link_to "Edit", edit_milkshake_path(@milkshake), class: "btn btn-success" %>
+        <%= link_to 'Delete', milkshake_path(@milkshake),class: "btn btn-danger", method: :delete,
         data: { confirm: "Are you sure?" } %>
+      <% end %>
     </div>
   </div> 
 </div>
