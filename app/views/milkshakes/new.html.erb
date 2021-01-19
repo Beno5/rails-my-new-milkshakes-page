@@ -3,6 +3,7 @@
   <%= simple_form_for @milkshake do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
+    <%= f.input :photo, as: :file %>
     <%= f.submit "Submit milkshake", class: "btn btn-primary" %>
   <% end %>
 </div>

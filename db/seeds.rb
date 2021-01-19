@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "open-uri"
 
 puts "destroying everything"
 
@@ -21,7 +22,10 @@ adna = User.create!(email: "adna@example.com", password: "benjamin")
 
 puts "Users created, creating milkshakes"
 
-protein = Milkshake.create(name: 'Protein milkshake', description: "It's great milkshake. You need to try it!", user: beno)
+
+protein = Milkshake.new(name: 'Protein milkshake', description: "It's great milkshake. You need to try it!", user: beno)
+protein.photo.attach(io: URI.open("https://i2.wp.com/www.whiskynsunshine.com/wp-content/uploads/2019/10/frozen-white-chocolate-milkshake-1.jpg?resize=720%2C540&ssl=1"), filename: "milkshake.jpg", content_type: 'image/png')
+protein.save!
 
 puts "Milkshakes created! creating ingredients"
 

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="card-product">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+    <%= cl_image_tag @milkshake.photo.key, crop: :fill %>
     <div class="card-product-infos">
       <h2><%= @milkshake.name %></h2>
       <p><%= @milkshake.description %></p>
